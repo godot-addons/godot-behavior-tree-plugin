@@ -20,6 +20,7 @@ func _enter_tree():
 	add_custom_type("BehvAction","Node",preload("res://addons/behv/behv_act.gd"),preload("res://addons/behv/behv_act_icon.png"))
 	add_custom_type("BehvInverter","Node",preload("res://addons/behv/behv_inv.gd"),preload("res://addons/behv/behv_inv_icon.png"))
 	add_custom_type("BehvSucceeder","Node",preload("res://addons/behv/behv_suc.gd"),preload("res://addons/behv/behv_suc_icon.png"))
+	add_custom_type("BehvError","Node",preload("res://addons/behv/behv_error.gd"),preload("res://addons/behv/behv_base_icon.png"))
 
 func _exit_tree():
 	# When the plugin node exits the tree, remove the custom type
@@ -29,6 +30,7 @@ func _exit_tree():
 	remove_custom_type("BehvSequence")
 	remove_custom_type("BehvInverter")
 	remove_custom_type("BehvSucceeder")
+	remove_custom_type("BehvError")
 
 
 
