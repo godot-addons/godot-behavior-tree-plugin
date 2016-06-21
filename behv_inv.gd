@@ -10,9 +10,19 @@ extends Node
 # 
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const BEHV_SUCESS = 0;
-const BEHV_FAILURE = 1;
-const BEHV_RUNNING = 2;
+var BehvError = preload("res://addons/behv/behv_error.gd")
 
 func _ready():
     pass
+
+func tick(ctx):
+	if get_child_count() > 1:
+		return BehvError.new(self, "Inverter has more than one child")
+	for c in get_children():
+		var result = c.tick(ctx)
+		if (typeof(result) == TYPE_OBJECT and result extends BehvError) or result == ERR_BUSY:
+			return result
+		elif result == OK:
+			return FAILED
+		elif result == FAILED:
+			return OK

@@ -1,0 +1,11 @@
+* behv: A Behavior Tree implementation for the Godot Engine, in GDScript
+
+`behv_godot` is a Godot Engine addon that adds a collection of nodes to the editor that facilitate the implementation of Behavior Trees. It is released under the terms of the MIT License.
+
+** Design philosophy
+
+- Easy to use and reason about - just Behavior Trees!
+- Unobtrusive -  to an existing workflow; the BT primitives are implemented as Nodes that get added directly onto a scene; Actions are just normal nodes that you extend with a script
+- Add add little as possible to Godot -
+  - The system uses existing numeric constants (`OK`, `FAILED` and `ERR_BUSY`) as stand-ins for the existing "Success, Failure, Running" concepts in BT.
+  - The entire thing is implemented as a pure-GDScript addon that can be easily added to a project without having to rebuild the Godot editor
