@@ -10,3 +10,21 @@
   
 ** Installation
 - Clone this repository into the `res://addons` folder of your project
+
+** Node types
+- `BehvRoot` Place this at the root of your tree at the AI/agent level. Accepts only a single child (probably some kind of composite)
+- Composite Types:
+  - `BehvSequence` - Runs a collection of child nodes, stopping at the first failure or `ERR_BUSY`
+    - Will return and complete if any child returns `FAILED`, returning `FAILED`
+    - Will return `OK` if all children return `OK`
+    - Will return if any child returns `ERR_BUSY`. Will resume at the `ERR_BUSY`-returning child
+  - `BehvSelector` - Runs a collection of child nodes, stopping at the first success or `ERR_BUSY`
+    - Will return and complete if any child returns `OK`, returning `OK`
+    - Will return `FAILED` if all children return `FAILED`
+    - Will return if any child returns `ERR_BUSY`. Will resume at the `ERR_BUSY`-returning child
+- Decorator Types:
+  - Inverter
+  - Succeeder
+- Leaf Types
+  - Action
+  - Condition

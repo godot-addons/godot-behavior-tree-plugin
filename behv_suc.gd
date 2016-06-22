@@ -19,7 +19,7 @@ func tick(ctx):
 	if get_child_count() > 1:
 		return BehvError.new(self, "ERROR BehvSucceeder has more than one child")
 	for c in get_children():
-		var result = c.tick(self)
+		var result = c.tick(ctx)
 		if (typeof(result) == TYPE_OBJECT and result extends BehvError) or result == ERR_BUSY:
 			return result
 		return OK
