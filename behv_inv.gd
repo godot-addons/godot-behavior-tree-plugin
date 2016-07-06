@@ -15,11 +15,11 @@ var BehvError = preload("res://addons/behv/behv_error.gd")
 func _ready():
     pass
 
-func tick(ctx):
+func tick(actor, ctx):
 	if get_child_count() > 1:
 		return BehvError.new(self, "Inverter has more than one child")
 	for c in get_children():
-		var result = c.tick(ctx)
+		var result = c.tick(actor, ctx)
 		if (typeof(result) == TYPE_OBJECT and result extends BehvError) or result == ERR_BUSY:
 			return result
 		elif result == OK:

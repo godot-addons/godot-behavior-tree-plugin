@@ -15,5 +15,5 @@ var BehvError = preload("res://addons/behv/behv_error.gd")
 func _ready():
     pass
 
-func tick(ctx):
+func tick(actor, ctx):
 	return OK
