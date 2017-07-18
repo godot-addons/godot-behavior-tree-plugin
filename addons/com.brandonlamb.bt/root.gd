@@ -15,7 +15,7 @@ const BehvError = preload("res://addons/com.brandonlamb.bt/behv_error.gd")
 
 func tick(actor, ctx):
   if get_child_count() > 1:
-    var msg = str("ERROR BehvRoot node at ",get_name(), " has more than 1 child. Should only have one. Returning.")
+    var msg = str("ERROR BehvRoot node at ", get_name(), " has more than 1 child. Should only have one. Returning.")
     return BehvError.new(self, msg)
 
   # 0..1 children
