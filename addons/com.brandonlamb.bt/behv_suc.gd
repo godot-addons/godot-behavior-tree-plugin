@@ -1,4 +1,5 @@
 extends Node
+
 ################
 # The MIT License (MIT)
 #
@@ -10,16 +11,16 @@ extends Node
 #
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-var BehvError = preload("res://addons/behv/behv_error.gd")
-
-func _ready():
-    pass
+const BehvError = preload("res://addons/com.brandonlamb.bt/behv_error.gd")
 
 func tick(actor, ctx):
-	if get_child_count() > 1:
-		return BehvError.new(self, "ERROR BehvSucceeder has more than one child")
-	for c in get_children():
-		var result = c.tick(actor, ctx)
-		if (typeof(result) == TYPE_OBJECT and result extends BehvError) or result == ERR_BUSY:
-			return result
-		return OK
+  if get_child_count() > 1:
+    return BehvError.new(self, "ERROR BehvSucceeder has more than one child")
+
+  for c in get_children():
+    var result = c.tick(actor, ctx)
+
+    if (typeof(result) == TYPE_OBJECT and result extends BehvError) or result == ERR_BUSY:
+      return result
+
+    return OK
