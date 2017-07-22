@@ -108,7 +108,7 @@ Leaf nodes are the primitive building blocks of behavior trees. These nodes do n
 
 ### Action
 
-Action nodes perform computations to change the actor state. The actions implementation depends on the actor type, e.g., the actions of a robot may involve sending motor signals, sending sounds through speakers or turning on lights, while the actions of a NPC may involve executing animations, performing spacial transformations, playing a sound, etc.
+`BehaviourAction` nodes perform computations to change the actor state. The actions implementation depends on the actor type, e.g., the actions of a robot may involve sending motor signals, sending sounds through speakers or turning on lights, while the actions of a NPC may involve executing animations, performing spacial transformations, playing a sound, etc.
 
 Actions may not be only external (i.e, actions that changes the environment as result of changes on the agent), they can be internal too, e.g., registering logs, saving files, changing internal variables, etc.
 
@@ -116,7 +116,7 @@ An action returns `OK` if it could be completed; returns `FAILED` if, for any re
 
 ### Condition
 
-Condition nodes check whether a certain condition has been met or not. In order to accomplish this, the node must have a target variable (e.g. a perception information such as "obstacle distance" or "other agent visibility"; or an internal variable such as "battery level" or "hungry level"; etc.) and a criteria to base the decision (e.g.: "obstacle distance > 100m?" or "battery power < 10%?").
+`BehaviourCondition` nodes check whether a certain condition has been met or not. In order to accomplish this, the node must have a target variable (e.g. a perception information such as "obstacle distance" or "other agent visibility"; or an internal variable such as "battery level" or "hungry level"; etc.) and a criteria to base the decision (e.g.: "obstacle distance > 100m?" or "battery power < 10%?").
 
 These nodes return `OK` if the condition has been met and `FAILED` otherwise. Notice that, conditions do not return `ERR_BUSY` nor change values of system.
 
@@ -127,3 +127,4 @@ These nodes return `OK` if the condition has been met and `FAILED` otherwise. No
 * https://github.com/quabug/godot_behavior_tree
 * http://blog.renatopp.com/2014/07/25/an-introduction-to-behavior-trees-part-1/
 * http://blog.renatopp.com/2014/08/10/an-introduction-to-behavior-trees-part-2/
+* http://blog.renatopp.com/2014/08/10/an-introduction-to-behavior-trees-part-3/
