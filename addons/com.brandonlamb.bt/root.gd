@@ -11,12 +11,12 @@ extends Node
 #
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const BehvError = preload("res://addons/com.brandonlamb.bt/behv_error.gd")
+const BehvError = preload("res://addons/com.brandonlamb.bt/error.gd")
 
 func tick(actor, ctx):
-  if get_child_count() > 1:
-    var msg = str("ERROR BehvRoot node at ", get_name(), " has more than 1 child. Should only have one. Returning.")
-    return BehvError.new(self, msg)
+	if get_child_count() > 1:
+		var msg = str("ERROR BehaviorTree node at ", get_name(), " has more than 1 child. Should only have one. Returning.")
+		return BehvError.new(self, msg)
 
-  # 0..1 children
-  for c in get_children(): return c.tick(actor, ctx)
+	# 0..1 children
+	for c in get_children(): return c.tick(actor, ctx)

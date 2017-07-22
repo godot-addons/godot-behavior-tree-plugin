@@ -1,4 +1,5 @@
 extends Node
+
 ################
 # The MIT License (MIT)
 #
@@ -10,12 +11,22 @@ extends Node
 #
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-var message
-var err_node
+const BehvError = preload("res://addons/com.brandonlamb.bt/error.gd")
 
-func _ready():
-	pass
+export(int) var max_calls = 0
 
-func _init(_err_node, msg):
-	message = msg
-	err_node = _err_node
+var total_calls = 0
+
+func tick(actor, ctx):
+	if get_child_count() > 1:
+		return BehvError.new(self, "ERROR BehaviorLimiter has more than one child")
+
+	if total_calls >= max_calls:
+		return FAILED
+
+	for c in get_children():
+		var result = c.tick(actor, ctx)
+		total_calls++
+		return result
+
+	return FAILED

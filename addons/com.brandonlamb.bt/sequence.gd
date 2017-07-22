@@ -11,32 +11,32 @@ extends Node
 #
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const BehvError = preload("res://addons/com.brandonlamb.bt/behv_error.gd")
+const BehvError = preload("res://addons/com.brandonlamb.bt/error.gd")
 
 var last_result = FAILED
 var last_child_index = 0
 
 func tick(actor, ctx):
-  var early_bail = false
-  var found_success = false
+	var early_bail = false
+	var found_success = false
 
-  for idx in range(last_child_index, get_child_count()):
-    var child = get_child(idx)
+	for idx in range(last_child_index, get_child_count()):
+		var child = get_child(idx)
 
-    last_child_index = idx
-    last_result = child.tick(actor, ctx)
+		last_child_index = idx
+		last_result = child.tick(actor, ctx)
 
-    if (typeof(last_result) == TYPE_OBJECT and last_result extends BehvError):
-      break
+		if (typeof(last_result) == TYPE_OBJECT and last_result extends BehvError):
+			break
 
-    if last_result == FAILED:
-      break
+		if last_result == FAILED:
+			break
 
-    if last_result == ERR_BUSY:
-      early_bail = true
-      break
+		if last_result == ERR_BUSY:
+			early_bail = true
+			break
 
-  if not early_bail or last_child_index == get_child_count() - 1:
-    last_child_index = 0
+	if not early_bail or last_child_index == get_child_count() - 1:
+		last_child_index = 0
 
-  return last_result
+	return last_result
