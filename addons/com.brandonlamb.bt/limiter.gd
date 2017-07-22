@@ -1,4 +1,4 @@
-extends Node
+extends "res://addons/com.brandonlamb.bt/root.gd"
 
 ################
 # The MIT License (MIT)
@@ -17,6 +17,7 @@ export(int) var max_calls = 0
 
 var total_calls = 0
 
+# Decorator Node
 func tick(actor, ctx):
 	if get_child_count() > 1:
 		return BehvError.new(self, "ERROR BehaviorLimiter has more than one child")
@@ -24,9 +25,13 @@ func tick(actor, ctx):
 	if total_calls >= max_calls:
 		return FAILED
 
+	# 0..1 children
 	for c in get_children():
-		var result = c.tick(actor, ctx)
 		total_calls++
-		return result
+
+		if c.disabled:
+			return FAILED
+
+		return c.tick(actor, ctx)
 
 	return FAILED

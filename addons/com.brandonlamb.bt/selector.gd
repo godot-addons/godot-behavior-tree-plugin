@@ -1,4 +1,4 @@
-extends Node
+extends "res://addons/com.brandonlamb.bt/root.gd"
 
 ################
 # The MIT License (MIT)
@@ -16,11 +16,15 @@ const BehvError = preload("res://addons/com.brandonlamb.bt/error.gd")
 var last_result = FAILED
 var last_child_index = 0
 
+# Composite Node
 func tick(actor, ctx):
 	var early_bail = false
 
 	for idx in range(last_child_index, get_child_count()):
 		var child = get_child(idx)
+
+		if child.disabled:
+			break
 
 		last_child_index = idx
 		last_result = child.tick(actor, ctx)

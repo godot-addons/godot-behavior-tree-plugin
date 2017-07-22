@@ -1,4 +1,4 @@
-extends Node
+extends "res://addons/com.brandonlamb.bt/root.gd"
 
 ################
 # The MIT License (MIT)
@@ -13,10 +13,15 @@ extends Node
 
 const BehvError = preload("res://addons/com.brandonlamb.bt/error.gd")
 
+# Decorator Node
 func tick(actor, ctx):
+	if c.disabled:
+		return OK
+
 	if get_child_count() > 1:
 		return BehvError.new(self, "ERROR BehaviorSucceeder has more than one child")
 
+	# 0..1 children
 	for c in get_children():
 		var result = c.tick(actor, ctx)
 

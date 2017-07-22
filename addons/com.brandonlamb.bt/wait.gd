@@ -1,4 +1,4 @@
-extends Node
+extends "res://addons/com.brandonlamb.bt/root.gd"
 
 ################
 # The MIT License (MIT)
@@ -15,5 +15,6 @@ export(float) var wait_time = 0.0
 
 var last_time = 0.0
 
+# Decorator Node
 func tick(actor, ctx):
 	return OK
