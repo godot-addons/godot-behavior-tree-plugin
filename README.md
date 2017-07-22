@@ -122,7 +122,6 @@ These nodes return `OK` if the condition has been met and `FAILED` otherwise. No
 
 # Links
 
-* http://blog.renatopp.com/2014/08/15/an-introduction-to-behavior-trees-part-3/
 * https://github.com/olsonjeffery/behv_godot
 * https://github.com/quabug/godot_behavior_tree
 * http://blog.renatopp.com/2014/07/25/an-introduction-to-behavior-trees-part-1/
