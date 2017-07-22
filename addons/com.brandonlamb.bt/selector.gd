@@ -23,11 +23,12 @@ func tick(actor, ctx):
 	for idx in range(last_child_index, get_child_count()):
 		var child = get_child(idx)
 
-		if child.disabled:
-			break
-
 		last_child_index = idx
-		last_result = child.tick(actor, ctx)
+
+		if child.disabled:
+			last_result = OK
+		else:
+			last_result = child.tick(actor, ctx)
 
 		if typeof(last_result) == TYPE_OBJECT and last_result extends BehvError:
 			break
