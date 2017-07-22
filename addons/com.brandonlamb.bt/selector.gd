@@ -18,7 +18,6 @@ var last_child_index = 0
 
 func tick(actor, ctx):
 	var early_bail = false
-	var found_success = false
 
 	for idx in range(last_child_index, get_child_count()):
 		var child = get_child(idx)
@@ -26,7 +25,7 @@ func tick(actor, ctx):
 		last_child_index = idx
 		last_result = child.tick(actor, ctx)
 
-		if (typeof(last_result) == TYPE_OBJECT and last_result extends BehvError):
+		if typeof(last_result) == TYPE_OBJECT and last_result extends BehvError:
 			break
 
 		if last_result == OK:

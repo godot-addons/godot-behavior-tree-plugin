@@ -21,8 +21,7 @@ func tick(actor, ctx):
 	if get_child_count() > 1:
 		return BehvError.new(self, "ERROR BehaviorLimiter has more than one child")
 
-	if total_calls >= max_calls:
-		return FAILED
+	if total_calls >= max_calls: return FAILED
 
 	for c in get_children():
 		var result = c.tick(actor, ctx)

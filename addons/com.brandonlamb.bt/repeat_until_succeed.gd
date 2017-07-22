@@ -18,12 +18,13 @@ func tick(actor, ctx):
 		return BehvError.new(self, "ERROR BehaviorRepeatUntilSucceed has more than one child")
 
 	for c in get_children():
-		while (1<2):
+		while 1<2:
 			var result = c.tick(actor, ctx)
-			if (typeof(result) == TYPE_OBJECT and result extends BehvError):
+
+			if typeof(result) == TYPE_OBJECT and result extends BehvError:
 				return result
 
-			if (result == OK):
+			if result == OK:
 				return OK
 
 	return OK

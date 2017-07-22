@@ -19,4 +19,5 @@ func tick(actor, ctx):
 		return BehvError.new(self, msg)
 
 	# 0..1 children
-	for c in get_children(): return c.tick(actor, ctx)
+	for c in get_children():
+		return c.tick(actor, ctx)

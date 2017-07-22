@@ -18,7 +18,7 @@ func tick(actor, ctx):
 		return BehvError.new(self, "ERROR BehaviorRepeater has more than one child")
 
 	for c in get_children():
-		while (1<2):
+		while 1<2:
 			var result = c.tick(actor, ctx)
 
 			if (typeof(result) == TYPE_OBJECT and result extends BehvError) or result == ERR_BUSY:
