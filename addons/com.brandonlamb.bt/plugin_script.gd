@@ -46,6 +46,13 @@ func _enter_tree():
   )
 
   add_custom_type(
+    "BehaviorMaxLimiter", "
+    Node",
+    preload("res://addons/com.brandonlamb.bt/limiter.gd"),
+    preload("res://addons/com.brandonlamb.bt/inverter_icon.png")
+  )
+
+  add_custom_type(
     "BehaviorRepeater",
     "Node",
     preload("res://addons/com.brandonlamb.bt/repeater.gd"),
@@ -108,6 +115,7 @@ func _exit_tree():
   remove_custom_type("BehaviorFailer")
   remove_custom_type("BehaviorInverter")
   remove_custom_type("BehaviorLimiter")
+  remove_custom_type("BehaviorMaxTime")
   remove_custom_type("BehaviorRepeater")
   remove_custom_type("BehaviorRepeatUntilFail")
   remove_custom_type("BehaviorRepeatUntilSucceed")
