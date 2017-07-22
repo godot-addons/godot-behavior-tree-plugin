@@ -1,12 +1,19 @@
-* behv: A Behavior Tree implementation for the Godot Engine, in GDScript
-`behv_godot` is a Godot Engine addon that adds a collection of nodes to the editor that facilitate the implementation of Behavior Trees. It is released under the terms of the MIT License.
+# Godot Engine Behaviour Tree Editor Plugin
 
-This project exists because I (the author, Jeff Olson) had tried `quabug/godot_behavior_tree`. While it worked at first, I started seeing weird changes in behavior when I'd make minor tweaks in the BT that would disappear in subsequent runs. I traced this to some inconsistent behavior/race in the Sequence/Selector primitives. The C++ code was completely baffling to me, though. So, I just re-implemented BTs in pure-GDScript so that I could get unblocked in my own Godot project and move on, as opposed to learning all the idiomatic C++ needed for Godot plugin work. This repository is the result of that effort. I acknowledge and apologize for the fact that this is obvious NIH in action.
-  
-** Installation
-- Clone this repository into the `res://addons` folder of your project (or use `git submodule`) and, I guess, restart Godot.
+A Behavior Tree implementation for the Godot Engine, written in pure GDScript.
 
-** Design philosophy
+This project is a Godot Engine addon that adds a collection of nodes to the editor that facilitate the implementation of Behavior Trees. It is released under the terms of the MIT License.
+
+This is a fork from Jeff Olson (https://github.com/olsonjeffery/behv_godot), which is itself based on ideas/concepts from `quabug/godot_behavior_tree`.
+
+# Installation
+
+1. Clone this repository
+2. Copy the `com.brandonlamb.bt` folder into your `res://addons` folder
+3. In your project settings, enable the plugin
+
+# Design philosophy
+
 - Easy to use and reason about - just Behavior Trees!
 - Unobtrusive - to integrate an existing workflow
   - the BT primitives are implemented as Nodes that get added directly onto a scene; Actions are just normal nodes that you extend with a script
