@@ -6,106 +6,106 @@ func _enter_tree():
   add_custom_type(
     "BehaviorAction",
     "Node",
-    preload("res://addons/com.brandonlamb.bt/action.gd"),
-    preload("res://addons/com.brandonlamb.bt/action_icon.png")
+    preload("res://addons/godot-behavior-tree-plugin/action.gd"),
+    preload("res://addons/godot-behavior-tree-plugin/action_icon.png")
   )
 
   add_custom_type(
     "BehaviorCondition",
     "Node",
-    preload("res://addons/com.brandonlamb.bt/condition.gd"),
-    preload("res://addons/com.brandonlamb.bt/condition_icon.png")
+    preload("res://addons/godot-behavior-tree-plugin/condition.gd"),
+    preload("res://addons/godot-behavior-tree-plugin/condition_icon.png")
   )
 
   add_custom_type(
     "BehaviorError",
     "Node",
-    preload("res://addons/com.brandonlamb.bt/error.gd"),
-    preload("res://addons/com.brandonlamb.bt/error_icon.png")
+    preload("res://addons/godot-behavior-tree-plugin/error.gd"),
+    preload("res://addons/godot-behavior-tree-plugin/error_icon.png")
   )
 
   add_custom_type(
     "BehaviorFailer",
     "Node",
-    preload("res://addons/com.brandonlamb.bt/failer.gd"),
-    preload("res://addons/com.brandonlamb.bt/error_icon.png")
+    preload("res://addons/godot-behavior-tree-plugin/failer.gd"),
+    preload("res://addons/godot-behavior-tree-plugin/error_icon.png")
   )
 
   add_custom_type(
     "BehaviorInverter",
     "Node",
-    preload("res://addons/com.brandonlamb.bt/inverter.gd"),
-    preload("res://addons/com.brandonlamb.bt/inverter_icon.png")
+    preload("res://addons/godot-behavior-tree-plugin/inverter.gd"),
+    preload("res://addons/godot-behavior-tree-plugin/inverter_icon.png")
   )
 
   add_custom_type(
     "BehaviorLimiter", "
     Node",
-    preload("res://addons/com.brandonlamb.bt/limiter.gd"),
-    preload("res://addons/com.brandonlamb.bt/inverter_icon.png")
+    preload("res://addons/godot-behavior-tree-plugin/limiter.gd"),
+    preload("res://addons/godot-behavior-tree-plugin/inverter_icon.png")
   )
 
   add_custom_type(
     "BehaviorMaxLimiter", "
     Node",
-    preload("res://addons/com.brandonlamb.bt/limiter.gd"),
-    preload("res://addons/com.brandonlamb.bt/inverter_icon.png")
+    preload("res://addons/godot-behavior-tree-plugin/limiter.gd"),
+    preload("res://addons/godot-behavior-tree-plugin/inverter_icon.png")
   )
 
   add_custom_type(
     "BehaviorRepeater",
     "Node",
-    preload("res://addons/com.brandonlamb.bt/repeater.gd"),
-    preload("res://addons/com.brandonlamb.bt/inverter_icon.png")
+    preload("res://addons/godot-behavior-tree-plugin/repeater.gd"),
+    preload("res://addons/godot-behavior-tree-plugin/inverter_icon.png")
   )
 
   add_custom_type(
     "BehaviorRepeatUntilFail",
     "Node",
-    preload("res://addons/com.brandonlamb.bt/repeat_until_fail.gd"),
-    preload("res://addons/com.brandonlamb.bt/inverter_icon.png")
+    preload("res://addons/godot-behavior-tree-plugin/repeat_until_fail.gd"),
+    preload("res://addons/godot-behavior-tree-plugin/inverter_icon.png")
   )
 
   add_custom_type(
     "BehaviorRepeatUntilSucceed",
     "Node",
-    preload("res://addons/com.brandonlamb.bt/repeat_until_succeed.gd"),
-    preload("res://addons/com.brandonlamb.bt/inverter_icon.png")
+    preload("res://addons/godot-behavior-tree-plugin/repeat_until_succeed.gd"),
+    preload("res://addons/godot-behavior-tree-plugin/inverter_icon.png")
   )
 
   add_custom_type(
     "BehaviorSelector",
     "Node",
-    preload("res://addons/com.brandonlamb.bt/selector.gd"),
-    preload("res://addons/com.brandonlamb.bt/selector_icon.png")
+    preload("res://addons/godot-behavior-tree-plugin/selector.gd"),
+    preload("res://addons/godot-behavior-tree-plugin/selector_icon.png")
   )
 
   add_custom_type(
     "BehaviorSequence",
     "Node",
-    preload("res://addons/com.brandonlamb.bt/sequence.gd"),
-    preload("res://addons/com.brandonlamb.bt/sequence_icon.png")
+    preload("res://addons/godot-behavior-tree-plugin/sequence.gd"),
+    preload("res://addons/godot-behavior-tree-plugin/sequence_icon.png")
   )
 
   add_custom_type(
     "BehaviorSucceeder",
     "Node",
-    preload("res://addons/com.brandonlamb.bt/succeeder.gd"),
-    preload("res://addons/com.brandonlamb.bt/succeeder_icon.png")
+    preload("res://addons/godot-behavior-tree-plugin/succeeder.gd"),
+    preload("res://addons/godot-behavior-tree-plugin/succeeder_icon.png")
   )
 
   add_custom_type(
     "BehaviorTree",
     "Node",
-    preload("res://addons/com.brandonlamb.bt/root.gd"),
-    preload("res://addons/com.brandonlamb.bt/root_icon.png")
+    preload("res://addons/godot-behavior-tree-plugin/root.gd"),
+    preload("res://addons/godot-behavior-tree-plugin/root_icon.png")
   )
 
   add_custom_type(
     "BehaviorWait",
     "Node",
-    preload("res://addons/com.brandonlamb.bt/wait.gd"),
-    preload("res://addons/com.brandonlamb.bt/action_icon.png")
+    preload("res://addons/godot-behavior-tree-plugin/wait.gd"),
+    preload("res://addons/godot-behavior-tree-plugin/action_icon.png")
   )
 
 func _exit_tree():

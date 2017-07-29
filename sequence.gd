@@ -1,6 +1,6 @@
-extends "res://addons/com.brandonlamb.bt/root.gd"
+extends "res://addons/godot-behavior-tree-plugin/root.gd"
 
-const BehvError = preload("res://addons/com.brandonlamb.bt/error.gd")
+const BehvError = preload("res://addons/godot-behavior-tree-plugin/error.gd")
 
 var last_result = FAILED
 var last_child_index = 0

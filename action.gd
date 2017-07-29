@@ -1,4 +1,4 @@
-extends "res://addons/com.brandonlamb.bt/root.gd"
+extends "res://addons/godot-behavior-tree-plugin/root.gd"
 
 # Leaf Node
 func tick(actor, ctx):

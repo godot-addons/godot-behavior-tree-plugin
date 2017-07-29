@@ -1,6 +1,6 @@
 extends Node
 
-const BehvError = preload("res://addons/com.brandonlamb.bt/error.gd")
+const BehvError = preload("res://addons/godot-behavior-tree-plugin/error.gd")
 
 export(bool) var disabled
 
