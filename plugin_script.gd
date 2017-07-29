@@ -11,6 +11,13 @@ func _enter_tree():
   )
 
   add_custom_type(
+    "Blackboard",
+    "Node",
+    preload("res://addons/godot-behavior-tree-plugin/blackboard.gd"),
+    preload("res://addons/godot-behavior-tree-plugin/blackboard_icon.png")
+  )
+
+  add_custom_type(
     "BehaviorCondition",
     "Node",
     preload("res://addons/godot-behavior-tree-plugin/condition.gd"),
