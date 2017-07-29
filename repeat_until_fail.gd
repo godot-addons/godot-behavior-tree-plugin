@@ -18,7 +18,7 @@ func tick(actor, ctx):
 			if typeof(result) == TYPE_OBJECT and result extends BehvError:
 				return result
 
-			if result == FAILED: r
-				eturn OK
+			if result == FAILED:
+				return OK
 
 	return OK

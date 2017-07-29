@@ -16,7 +16,7 @@ func tick(actor, ctx):
 
 	# 0..1 children
 	for c in get_children():
-		total_calls++
+		total_calls+=1
 
 		if c.disabled:
 			return FAILED
