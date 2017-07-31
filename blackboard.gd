@@ -1,6 +1,4 @@
-tool
-
-extends EditorPlugin
+extends Node
 
 var _baseMemory #stores global info
 var _treeMemory #store tree and node info
