@@ -10,8 +10,10 @@ This is a fork from Brandon Lamb (https://github.com/brandonlamb/godot-behavior-
 
 1. Clone this repository into your `res://addons` or use git submodule.
 2. In your project settings, enable the plugin
-3. Add a BehaviourTree node to a scene
-4. Call the `tick(actor, ctx)` function from `_process` or `_fixed_process`
+3. Add a BehaviourTree and a Blackboard node to a scene
+4. Grab references to the blackboard and behavior tree (use an exported NodePath and then call get_node() on it to get the actual node
+5. In `_process` or `_fixed_process` call the tree's `tick(actor, ctx)` passing in the actor and the blackboard instance
+6. In your actions, remove the default action script, make a new one, have it `extends "res://addons/godot-behavior-tree-plugin/action.gd"` and add a tick method where all of your logic will go
 
 # Design philosophy
 
