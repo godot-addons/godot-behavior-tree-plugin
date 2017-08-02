@@ -7,7 +7,7 @@ export(int) var max_calls = 0
 var total_calls = 0
 
 # Decorator Node
-func tick(actor, ctx):
+func tick(tick):
 	if get_child_count() > 1:
 		return BehvError.new(self, "ERROR BehaviorLimiter has more than one child")
 
@@ -21,6 +21,6 @@ func tick(actor, ctx):
 		if c.disabled:
 			return FAILED
 
-		return c.tick(actor, ctx)
+		return c.tick(tick)
 
 	return FAILED

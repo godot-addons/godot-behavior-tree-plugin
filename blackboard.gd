@@ -8,7 +8,7 @@ func _enter_tree():
   _treeMemory = {}
 
 func _get_tree_memory(behaviorTree):
-  if(!_treeMemory(behaviorTree)):
+  if(!_treeMemory.has(behaviorTree)):
     _treeMemory[behaviorTree]= {
       'nodeMemory':{},
       'openNodes':[]
@@ -29,10 +29,10 @@ func _get_memory(behaviorTree, nodeScope):
       memory = self._get_node_memory(behaviorTree, nodeScope)
   return memory
 
-func set(key, value, behaviorTree, nodeScope):
+func set(key, value, behaviorTree = null, nodeScope = null):
   var memory = self._get_memory(behaviorTree, nodeScope)
   memory[key] = value
 
-func get(key, behaviorTree, nodeScope):
+func get(key, behaviorTree = null, nodeScope = null):
   var memory = self._get_memory(behaviorTree, nodeScope)
   return memory[key]

@@ -3,7 +3,7 @@ extends "res://addons/godot-behavior-tree-plugin/root.gd"
 const BehvError = preload("res://addons/godot-behavior-tree-plugin/error.gd")
 
 # Decorator Node
-func tick(actor, ctx):
+func tick(tick):
 	if get_child_count() > 1:
 		return BehvError.new(self, "Inverter has more than one child")
 
@@ -12,7 +12,7 @@ func tick(actor, ctx):
 		if c.disabled:
 			return OK
 
-		var result = c.tick(actor, ctx)
+		var result = c.tick(tick)
 
 		if (typeof(result) == TYPE_OBJECT and result extends BehvError) or result == ERR_BUSY:
 			return result

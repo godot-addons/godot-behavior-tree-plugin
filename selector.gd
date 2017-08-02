@@ -6,7 +6,7 @@ var last_result = FAILED
 var last_child_index = 0
 
 # Composite Node
-func tick(actor, ctx):
+func tick(tick):
 	var early_bail = false
 
 	for idx in range(last_child_index, get_child_count()):
@@ -17,7 +17,7 @@ func tick(actor, ctx):
 		if child.disabled:
 			last_result = OK
 		else:
-			last_result = child.tick(actor, ctx)
+			last_result = child.tick(tick)
 
 		if typeof(last_result) == TYPE_OBJECT and last_result extends BehvError:
 			break

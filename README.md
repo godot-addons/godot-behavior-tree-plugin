@@ -39,7 +39,16 @@ This is a fork from Brandon Lamb (https://github.com/brandonlamb/godot-behavior-
 
 Place this at the root of your tree at the AI/agent level. The `BehaviourTree` node accepts only a *single child* node. For example, you would probably add some kind of composite such as a `BehaviourSequence` node.
 
-From a code perspective, this is a very simple node intended to be the root / entry-point to your behaviour tree logic. The `BehaviourTree` will simply call down to its child's `tick(actor, ctx)` function recursively.
+From a code perspective, this is a very simple node intended to be the root / entry-point to your behaviour tree logic. It creates a 'tick' object and will then simply call down to its child's `tick(tick)` function recursively.
+
+## Tick object
+
+The `Tick` object is created internally by the BehaviorTree, and passed in to each child node.  It mostly functions as a way to pass references through the tree (automatically containing a reference to the tree, the blackboard, and the actor the tree is currently acting on).
+
+## Blackboard
+
+The `Blackboard` acts as a memory repository for your actor.  It is passed in to the tree, and its `get()` and `set()` functions will store things based on arguments given.  For example, passing `get()` a key, a reference to the tree (contained on the `Tick` object), and a reference to the node, a node can pull node-specific information.  Leaving off the node reference will automatically make the `get()` search only the tree level storage.  Using `set()` works similiarly.  Calling `set()` with a key and a value will set an entry in memory for any user of the blackboard; calling it with a tree reference as well will store it in the memory for only that tree (or anything with a reference to the tree); and with a tree and a node will store it in memory for that node in the specific tree.
+All nodes will have access to a `Blackboard`, as it is stored on a `Tick` object.
 
 ## Composite Types
 
