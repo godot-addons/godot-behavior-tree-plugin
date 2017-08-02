@@ -15,24 +15,24 @@ func _get_tree_memory(behaviorTree):
     }
   return _treeMemory[behaviorTree]
 
-func _get_node_memory(behaviorTree, nodeScope):
-  var memory = _treeMemory['nodeMemory']
-  if(!memory[nodeScope]):
+func _get_node_memory(treeMemory, nodeScope):
+  var memory = treeMemory['nodeMemory']
+  if(!memory.has(nodeScope)):
     memory[nodeScope] = {}
   return memory[nodeScope]
 
 func _get_memory(behaviorTree, nodeScope):
   var memory = _baseMemory
   if(behaviorTree):
-    memory = self._get_tree_memory(behaviorTree)
+    memory = _get_tree_memory(behaviorTree)
     if(nodeScope):
-      memory = self._get_node_memory(behaviorTree, nodeScope)
+      memory = _get_node_memory(memory, nodeScope)
   return memory
 
 func set(key, value, behaviorTree = null, nodeScope = null):
-  var memory = self._get_memory(behaviorTree, nodeScope)
+  var memory = _get_memory(behaviorTree, nodeScope)
   memory[key] = value
 
 func get(key, behaviorTree = null, nodeScope = null):
-  var memory = self._get_memory(behaviorTree, nodeScope)
+  var memory = _get_memory(behaviorTree, nodeScope)
   return memory[key]
