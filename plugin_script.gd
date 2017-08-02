@@ -104,7 +104,7 @@ func _enter_tree():
   add_custom_type(
     "BehaviorTree",
     "Node",
-    preload("res://addons/godot-behavior-tree-plugin/root.gd"),
+    preload("res://addons/godot-behavior-tree-plugin/behavior_tree.gd"),
     preload("res://addons/godot-behavior-tree-plugin/root_icon.png")
   )
 

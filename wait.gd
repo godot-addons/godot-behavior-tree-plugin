@@ -1,4 +1,4 @@
-extends "res://addons/godot-behavior-tree-plugin/root.gd"
+extends "res://addons/godot-behavior-tree-plugin/bt_base.gd"
 
 export(float) var wait_time = 0.0
 
