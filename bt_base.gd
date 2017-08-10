@@ -3,7 +3,7 @@ extends Node
 func _execute(tick):
 	_enter(tick)
 
-	if(!tick.blackboard.get('isOpen'), tick.tree, self):
+	if tick.blackboard.get('isOpen', tick.tree, self) != true:
 		_open(tick)
 
 	var status = _tick(tick)
@@ -20,6 +20,7 @@ func _enter(tick):
 	enter(tick)
 
 func _open(tick):
+	print("opening node")
 	tick.openNode(self)
 	tick.blackboard.set('isOpen', true, tick.tree, self)
 	open(tick)
@@ -29,6 +30,7 @@ func _tick(tick):
 	tick(tick)
 
 func _close(tick):
+	print("closing node")
 	tick.closeNode(self)
 	tick.blackboard.set('isOpen', false, tick.tree, self)
 	close(tick)

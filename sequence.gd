@@ -14,10 +14,7 @@ func tick(tick):
 
 		last_child_index = idx
 
-		if child.disabled:
-			last_result = OK
-		else:
-			last_result = child.tick(tick)
+		last_result = child.tick(tick)
 
 		if typeof(last_result) == TYPE_OBJECT and last_result extends BehvError:
 			break
