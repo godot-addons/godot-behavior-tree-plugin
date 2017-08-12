@@ -88,10 +88,24 @@ func _enter_tree():
   )
 
   add_custom_type(
+    "MemSelector",
+    "Node",
+    preload("res://addons/godot-behavior-tree-plugin/memSelector.gd"),
+    preload("res://addons/godot-behavior-tree-plugin/memSelector_icon.png")
+  )
+
+  add_custom_type(
     "BehaviorSequence",
     "Node",
     preload("res://addons/godot-behavior-tree-plugin/sequence.gd"),
     preload("res://addons/godot-behavior-tree-plugin/sequence_icon.png")
+  )
+
+  add_custom_type(
+    "MemSequence",
+    "Node",
+    preload("res://addons/godot-behavior-tree-plugin/memSequence.gd"),
+    preload("res://addons/godot-behavior-tree-plugin/memSequence_icon.png")
   )
 
   add_custom_type(
@@ -127,7 +141,9 @@ func _exit_tree():
   remove_custom_type("BehaviorRepeatUntilFail")
   remove_custom_type("BehaviorRepeatUntilSucceed")
   remove_custom_type("BehaviorSelector")
+  remove_custom_type("MemSelector")
   remove_custom_type("BehaviorSequence")
+  remove_custom_type("MemSequence")
   remove_custom_type("BehaviorSucceeder")
   remove_custom_type("BehaviorTree")
   remove_custom_type("BehaviorWait")
