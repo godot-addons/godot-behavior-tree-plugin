@@ -27,7 +27,8 @@ func tickNode(node):
 	pass
 
 func closeNode(node):
-	openNodes.remove(openNodes.find(node))
+	if(openNodes.has(node)):
+		openNodes.remove(openNodes.find(node))
 
 func exitNode(node):
 	pass
