@@ -27,7 +27,7 @@ func _open(tick):
 
 func _tick(tick):
 	tick.tickNode(self)
-	tick(tick)
+	return tick(tick)
 
 func _close(tick):
 	print("closing node")
@@ -47,7 +47,7 @@ func open(tick):
 	pass
 
 func tick(tick):
-	pass
+	return OK
 
 func close(tick):
 	pass

@@ -14,9 +14,9 @@ func tick(actor, blackboard):
 	tick.actor = actor
 	tick.blackboard = blackboard
 
-	# 0..1 children
+	var retVal = FAILED
 	for c in get_children():
-		return c._execute(tick)
+		retVal =  c._execute(tick)
 
 	#close nodes from last tick, if needed.
 	var lastOpenNodes = tick.blackboard.get('openNodes', self)
@@ -29,3 +29,4 @@ func tick(actor, blackboard):
 
 	#populate the blackboard
 	blackboard.set('openNodes', currentOpenNodes, self)
+	return retVal
