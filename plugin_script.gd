@@ -131,12 +131,14 @@ func _enter_tree():
 
 func _exit_tree():
   remove_custom_type("BehaviorAction")
+  remove_custom_type("Blackboard")
   remove_custom_type("BehaviorCondition")
   remove_custom_type("BehaviorError")
   remove_custom_type("BehaviorFailer")
   remove_custom_type("BehaviorInverter")
   remove_custom_type("BehaviorLimiter")
   remove_custom_type("BehaviorMaxTime")
+  remove_custom_type("BehaviorMaxLimiter")
   remove_custom_type("BehaviorRepeater")
   remove_custom_type("BehaviorRepeatUntilFail")
   remove_custom_type("BehaviorRepeatUntilSucceed")
