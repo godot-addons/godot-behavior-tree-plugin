@@ -1,32 +1,15 @@
 extends "res://addons/godot-behavior-tree-plugin/bt_base.gd"
 
-const BehvError = preload("res://addons/godot-behavior-tree-plugin/error.gd")
-
-var last_result = FAILED
-var last_child_index = 0
-
-# Composite Node
+# Compsite Node - ticks children until one returns FAILED, ERR_BUSY or ERROR
+#   succeeds ONLY if all children succeed (return OK)
 func tick(tick):
-	var early_bail = false
+	var result = OK #if we have no children, assume success
 
-	for idx in range(last_child_index, get_child_count()):
+	for idx in range(0, get_child_count()):
 		var child = get_child(idx)
+		result = child._execute(tick)
 
-		last_child_index = idx
-
-		last_result = child._execute(tick)
-
-		if typeof(last_result) == TYPE_OBJECT and last_result extends BehvError:
+		if result != OK:
 			break
 
-		if last_result == FAILED:
-			break
-
-		if last_result == ERR_BUSY:
-			early_bail = true
-			break
-
-	if not early_bail or last_child_index == get_child_count() - 1:
-		last_child_index = 0
-
-	return last_result
+	return result
