@@ -14,7 +14,7 @@ func tick(tick):
 
 		last_child_index = idx
 
-		last_result = child.tick(tick)
+		last_result = child._execute(tick)
 
 		if typeof(last_result) == TYPE_OBJECT and last_result extends BehvError:
 			break
