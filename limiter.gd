@@ -18,9 +18,6 @@ func tick(tick):
 	for c in get_children():
 		total_calls+=1
 
-		if c.disabled:
-			return FAILED
-
-		return c.tick(tick)
+		return c._execute(tick)
 
 	return FAILED
