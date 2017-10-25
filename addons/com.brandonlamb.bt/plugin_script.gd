@@ -39,15 +39,15 @@ func _enter_tree():
   )
 
   add_custom_type(
-    "BehaviorLimiter", "
-    Node",
+    "BehaviorLimiter", 
+    "Node",
     preload("res://addons/com.brandonlamb.bt/limiter.gd"),
     preload("res://addons/com.brandonlamb.bt/inverter_icon.png")
   )
 
   add_custom_type(
-    "BehaviorMaxLimiter", "
-    Node",
+    "BehaviorMaxLimiter", 
+    "Node",
     preload("res://addons/com.brandonlamb.bt/limiter.gd"),
     preload("res://addons/com.brandonlamb.bt/inverter_icon.png")
   )
