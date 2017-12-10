@@ -4,15 +4,16 @@ A Behavior Tree implementation for the Godot Engine, written in pure GDScript.
 
 This project is a Godot Engine addon that adds a collection of nodes to the editor that facilitate the implementation of Behavior Trees. It is released under the terms of the MIT License.
 
-This is a fork from Jeff Olson (https://github.com/olsonjeffery/behv_godot), which is itself based on ideas/concepts from `quabug/godot_behavior_tree`.
+This is a fork from Brandon Lamb (https://github.com/brandonlamb/godot-behavior-tree-plugin) which is a fork from Jeff Olson (https://github.com/olsonjeffery/behv_godot), which is itself based on ideas/concepts from `quabug/godot_behavior_tree`.
 
 # Installation
 
-1. Clone this repository
-2. Copy the `addons/com.brandonlamb.bt` folder into your `res://addons` folder
-3. In your project settings, enable the plugin
-4. Add a BehaviourTree node to a scene
-5. Call the `tick(actor, ctx)` function from `_process` or `_fixed_process`
+1. Clone this repository into your `res://addons` or use git submodule.
+2. In your project settings, enable the plugin
+3. Add a BehaviourTree and a Blackboard node to a scene
+4. Grab references to the blackboard and behavior tree (use an exported NodePath and then call get_node() on it to get the actual node
+5. In `_process` or `_fixed_process` call the tree's `tick(actor, ctx)` passing in the actor and the blackboard instance
+6. In your actions, remove the default action script, make a new one, have it `extends "res://addons/godot-behavior-tree-plugin/action.gd"` and add a tick method where all of your logic will go
 
 # Design philosophy
 
@@ -38,7 +39,16 @@ This is a fork from Jeff Olson (https://github.com/olsonjeffery/behv_godot), whi
 
 Place this at the root of your tree at the AI/agent level. The `BehaviourTree` node accepts only a *single child* node. For example, you would probably add some kind of composite such as a `BehaviourSequence` node.
 
-From a code perspective, this is a very simple node intended to be the root / entry-point to your behaviour tree logic. The `BehaviourTree` will simply call down to its child's `tick(actor, ctx)` function recursively.
+From a code perspective, this is a very simple node intended to be the root / entry-point to your behaviour tree logic. It creates a 'tick' object and will then simply call down to its child's `tick(tick)` function recursively.
+
+## Tick object
+
+The `Tick` object is created internally by the BehaviorTree, and passed in to each child node.  It mostly functions as a way to pass references through the tree (automatically containing a reference to the tree, the blackboard, and the actor the tree is currently acting on).
+
+## Blackboard
+
+The `Blackboard` acts as a memory repository for your actor.  It is passed in to the tree, and its `get()` and `set()` functions will store things based on arguments given.  For example, passing `get()` a key, a reference to the tree (contained on the `Tick` object), and a reference to the node, a node can pull node-specific information.  Leaving off the node reference will automatically make the `get()` search only the tree level storage.  Using `set()` works similiarly.  Calling `set()` with a key and a value will set an entry in memory for any user of the blackboard; calling it with a tree reference as well will store it in the memory for only that tree (or anything with a reference to the tree); and with a tree and a node will store it in memory for that node in the specific tree.
+All nodes will have access to a `Blackboard`, as it is stored on a `Tick` object.
 
 ## Composite Types
 
@@ -122,6 +132,7 @@ These nodes return `OK` if the condition has been met and `FAILED` otherwise. No
 
 # Links
 
+* https://github.com/brandonlamb/godot-behavior-tree-plugin
 * https://github.com/olsonjeffery/behv_godot
 * https://github.com/quabug/godot_behavior_tree
 * http://blog.renatopp.com/2014/07/25/an-introduction-to-behavior-trees-part-1/
