@@ -1,4 +1,4 @@
-# Godot Engine Behaviour Tree Editor Plugin
+# Godot Engine Behavior Tree Editor Plugin
 
 A Behavior Tree implementation for the Godot Engine, written in pure GDScript.
 
@@ -10,7 +10,7 @@ This is a fork from Brandon Lamb (https://github.com/brandonlamb/godot-behavior-
 
 1. Clone this repository into your `res://addons` or use git submodule.
 2. In your project settings, enable the plugin
-3. Add a BehaviourTree and a Blackboard node to a scene
+3. Add a BehaviorTree and a Blackboard node to a scene
 4. Grab references to the blackboard and behavior tree (use an exported NodePath and then call get_node() on it to get the actual node
 5. In `_process` or `_fixed_process` call the tree's `tick(actor, ctx)` passing in the actor and the blackboard instance
 6. In your actions, remove the default action script, make a new one, have it `extends "res://addons/godot-behavior-tree-plugin/action.gd"` and add a tick method where all of your logic will go
@@ -31,34 +31,34 @@ This is a fork from Brandon Lamb (https://github.com/brandonlamb/godot-behavior-
 * `OK`: returned when a criterion has been met by a condition node or an action node has been completed successfully;
 * `FAILED`: returned when a criterion has not been met by a condition node or an action node could not finish its execution for any reason;
 * `ERR_BUSY`: returned when an action node has been initialized but is still waiting the its resolution.
-* `BehaviourError`: returned when some unexpected error happened in the tree, probably by a programming error (trying to verify an undefined variable). Its use depends on the final implementation of the leaf nodes.
+* `BehaviorError`: returned when some unexpected error happened in the tree, probably by a programming error (trying to verify an undefined variable). Its use depends on the final implementation of the leaf nodes.
 
 # Node types
 
-## BehaviourTree
+## BehaviorTree
 
-Place this at the root of your tree at the AI/agent level. The `BehaviourTree` node accepts only a *single child* node. For example, you would probably add some kind of composite such as a `BehaviourSequence` node.
+Place this at the root of your tree at the AI/agent level. The `BehaviorTree` node accepts only a *single child* node. For example, you would probably add some kind of composite such as a `BehaviorSequence` node.
 
-From a code perspective, this is a very simple node intended to be the root / entry-point to your behaviour tree logic. It creates a 'tick' object and will then simply call down to its child's `tick(tick)` function recursively.
+From a code perspective, this is a very simple node intended to be the root / entry-point to your Behavior tree logic. It creates a 'tick' object and will then simply call down to its child's `tick(tick)` function recursively.
 
 ## Tick object
 
 The `Tick` object is created internally by the BehaviorTree, and passed in to each child node.  It mostly functions as a way to pass references through the tree (automatically containing a reference to the tree, the blackboard, and the actor the tree is currently acting on).
 
-## Blackboard
+## BehaviorBlackboard
 
 The `Blackboard` acts as a memory repository for your actor.  It is passed in to the tree, and its `get()` and `set()` functions will store things based on arguments given.  For example, passing `get()` a key, a reference to the tree (contained on the `Tick` object), and a reference to the node, a node can pull node-specific information.  Leaving off the node reference will automatically make the `get()` search only the tree level storage.  Using `set()` works similiarly.  Calling `set()` with a key and a value will set an entry in memory for any user of the blackboard; calling it with a tree reference as well will store it in the memory for only that tree (or anything with a reference to the tree); and with a tree and a node will store it in memory for that node in the specific tree.
 All nodes will have access to a `Blackboard`, as it is stored on a `Tick` object.
 
 ## Composite Types
 
-Composite nodes can have one or more children. The node is responsible to propagate the tick signal to its children, respecting some order. A composite node also must decide which and when to return the state values of its children, when the value is `OK` or `FAILED`. Notice that, when a child returns `ERR_BUSY` or `BehaviourError`, the composite node must return the state immediately. All composite nodes are represented graphically as a white box with a certain symbol inside.
+Composite nodes can have one or more children. The node is responsible to propagate the tick signal to its children, respecting some order. A composite node also must decide which and when to return the state values of its children, when the value is `OK` or `FAILED`. Notice that, when a child returns `ERR_BUSY` or `BehaviorError`, the composite node must return the state immediately. All composite nodes are represented graphically as a white box with a certain symbol inside.
 
 ### BehaviorSequence
 
-A `BehaviourSequence` node runs a collection of child nodes, stopping at the first failure or `ERR_BUSY`.
+A `BehaviorSequence` node runs a collection of child nodes, stopping at the first failure or `ERR_BUSY`.
 
-The `BehaviourSequence` node ticks its children sequentially until one of them returns `FAILED`, `ERR_BUSY` or `BehaviourError`. If all children return the success state, the sequence also returns `OK`.
+The `BehaviorSequence` node ticks its children sequentially until one of them returns `FAILED`, `ERR_BUSY` or `BehaviorError`. If all children return the success state, the sequence also returns `OK`.
 
   - Will return and complete if any child returns `FAILED`, returning `FAILED`
   - Will return `OK` if all children return `OK`
@@ -66,9 +66,9 @@ The `BehaviourSequence` node ticks its children sequentially until one of them r
 
 ### BehaviorSelector
 
-A `BehaviourSelector` node runs a collection of child nodes, stopping at the first success or `ERR_BUSY`.
+A `BehaviorSelector` node runs a collection of child nodes, stopping at the first success or `ERR_BUSY`.
 
-The `BehaviourSelector` node ticks its children sequentially until one of them returns `OK`, `ERR_BUSY` or `FAILED`. If all children return the failure state, the priority also returns `FAILED`.
+The `BehaviorSelector` node ticks its children sequentially until one of them returns `OK`, `ERR_BUSY` or `FAILED`. If all children return the failure state, the priority also returns `FAILED`.
 
 For instance, suppose that a cleaning robot have a behavior to turn itself off. When the robot tries to turn itself off, the first action is performed and the robot tries to get back to its charging dock and turn off all its systems, but if this action fail for some reason (e.g., it could not find the dock) an emergency shutdown will be performed.
 
@@ -82,35 +82,35 @@ Decorators are special nodes that can have only a single child. The goal of the 
 
 ### Failer
 
-The `BehaviourFailer` decorator is the inverse of `BehaviourSuceeder`, this decorator return `FAILED` for any child result.
+The `BehaviorFailer` decorator is the inverse of `BehaviorSuceeder`, this decorator return `FAILED` for any child result.
 
 ### Inverter
 
-The `BehaviourInverter` decorator negates the result of its child node, i.e., `OK` state becomes `FAILED`, and `FAILED` becomes `OK`. Notice that, inverter does not change `ERR_BUSY` or `BehaviourError` states.
+The `BehaviorInverter` decorator negates the result of its child node, i.e., `OK` state becomes `FAILED`, and `FAILED` becomes `OK`. Notice that, inverter does not change `ERR_BUSY` or `BehaviorError` states.
 
 ### Limiter
 
-The `BehaviourLimiter` decorator imposes a maximum number of calls its child can have within the whole execution of the Behavior Tree, i.e., after a certain number of calls, its child will never be called again.
+The `BehaviorLimiter` decorator imposes a maximum number of calls its child can have within the whole execution of the Behavior Tree, i.e., after a certain number of calls, its child will never be called again.
 
 ### Max Time
 
-The `BehaviourMaxTime` decorator limits the maximum time its child can be running. If the child does not complete its execution before the maximum time, the child task is terminated and a failure is returned, as shown algorithm below.
+The `BehaviorMaxTime` decorator limits the maximum time its child can be running. If the child does not complete its execution before the maximum time, the child task is terminated and a failure is returned, as shown algorithm below.
 
 ### Repeater
 
-The `BehaviourRepeater` decorator sends the tick signal to its child every time that its child returns a `OK` or `FAILED` value, or when this decorator receives the tick. Additionally, a maximum number of repetition can be provided.
+The `BehaviorRepeater` decorator sends the tick signal to its child every time that its child returns a `OK` or `FAILED` value, or when this decorator receives the tick. Additionally, a maximum number of repetition can be provided.
 
 ### Repeat Until Failed
 
-The `BehaviourRepeatUntilFailed` decoroat keeps calling its child until the child returns a `FAILED` value. When this happen, the decorator return a `OK` state.
+The `BehaviorRepeatUntilFailed` decoroat keeps calling its child until the child returns a `FAILED` value. When this happen, the decorator return a `OK` state.
 
 ### Repeat Until Succeed
 
-Similar to the `BehaviourRepeatUntilFailed` decorator, the `BehaviourRepeatUntilSucceed` decorator calls the child until it returns a `OK`.
+Similar to the `BehaviorRepeatUntilFailed` decorator, the `BehaviorRepeatUntilSucceed` decorator calls the child until it returns a `OK`.
 
 ### Succeeder
 
-The `BehaviourSucceeder` is a decorator that returns `OK` always, no matter what its child returns. This is specially useful for debug and test purposes.
+The `BehaviorSucceeder` is a decorator that returns `OK` always, no matter what its child returns. This is specially useful for debug and test purposes.
 
 ## Leaf Types
 
@@ -118,7 +118,7 @@ Leaf nodes are the primitive building blocks of behavior trees. These nodes do n
 
 ### Action
 
-`BehaviourAction` nodes perform computations to change the actor state. The actions implementation depends on the actor type, e.g., the actions of a robot may involve sending motor signals, sending sounds through speakers or turning on lights, while the actions of a NPC may involve executing animations, performing spacial transformations, playing a sound, etc.
+`BehaviorAction` nodes perform computations to change the actor state. The actions implementation depends on the actor type, e.g., the actions of a robot may involve sending motor signals, sending sounds through speakers or turning on lights, while the actions of a NPC may involve executing animations, performing spacial transformations, playing a sound, etc.
 
 Actions may not be only external (i.e, actions that changes the environment as result of changes on the agent), they can be internal too, e.g., registering logs, saving files, changing internal variables, etc.
 
@@ -126,7 +126,7 @@ An action returns `OK` if it could be completed; returns `FAILED` if, for any re
 
 ### Condition
 
-`BehaviourCondition` nodes check whether a certain condition has been met or not. In order to accomplish this, the node must have a target variable (e.g. a perception information such as "obstacle distance" or "other agent visibility"; or an internal variable such as "battery level" or "hungry level"; etc.) and a criteria to base the decision (e.g.: "obstacle distance > 100m?" or "battery power < 10%?").
+`BehaviorCondition` nodes check whether a certain condition has been met or not. In order to accomplish this, the node must have a target variable (e.g. a perception information such as "obstacle distance" or "other agent visibility"; or an internal variable such as "battery level" or "hungry level"; etc.) and a criteria to base the decision (e.g.: "obstacle distance > 100m?" or "battery power < 10%?").
 
 These nodes return `OK` if the condition has been met and `FAILED` otherwise. Notice that, conditions do not return `ERR_BUSY` nor change values of system.
 
