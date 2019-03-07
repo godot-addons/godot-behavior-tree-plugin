@@ -13,7 +13,7 @@ func tick(tick):
 		while true:
 			var result = c._execute(tick)
 
-			if typeof(result) == TYPE_OBJECT and result extends BehvError:
+			if typeof(result) == TYPE_OBJECT and result is BehvError:
 				return result
 
 			if result == OK:
