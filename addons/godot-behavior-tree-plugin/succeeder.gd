@@ -11,7 +11,7 @@ func tick(tick):
 	for c in get_children():
 		var result = c._execute(tick)
 
-		if (typeof(result) == TYPE_OBJECT and result extends BehvError) or result == ERR_BUSY:
+		if (typeof(result) == TYPE_OBJECT and result is BehvError) or result == ERR_BUSY:
 			return result
 
 		return OK

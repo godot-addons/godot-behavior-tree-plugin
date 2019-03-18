@@ -13,7 +13,7 @@ func tick(tick):
 		while true:
 			var result = c.tick(tick)
 
-			if (typeof(result) == TYPE_OBJECT and result extends BehvError) or result == ERR_BUSY:
+			if (typeof(result) == TYPE_OBJECT and result is BehvError) or result == ERR_BUSY:
 				return result
 
 	return OK
