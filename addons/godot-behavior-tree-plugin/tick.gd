@@ -15,18 +15,18 @@ func _init():
 	actor = null
 	blackboard = []
 
-func openNode(node):
+func openNode(_node):
 	pass
 
 func enterNode(node):
 	openNodes.push_back(node)
 
-func tickNode(node):
+func tickNode(_node):
 	pass
 
 func closeNode(node):
 	if(openNodes.has(node)):
 		openNodes.remove(openNodes.find(node))
 
-func exitNode(node):
+func exitNode(_node):
 	pass

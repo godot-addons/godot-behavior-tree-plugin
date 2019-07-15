@@ -38,17 +38,17 @@ func _exit(tick):
 	exit(tick)
 
 #the following functions are to be overridden in extending nodes
-func enter(tick):
+func enter(_tick):
 	pass
 
-func open(tick):
+func open(_tick):
 	pass
 
-func tick(tick):
+func tick(_tick):
 	return OK
 
-func close(tick):
+func close(_tick):
 	pass
 
-func exit(tick):
+func exit(_tick):
 	pass
