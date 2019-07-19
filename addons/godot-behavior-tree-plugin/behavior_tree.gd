@@ -25,7 +25,8 @@ func tick(actor, blackboard):
 	#if node isn't in current, but is in last, close it
 	for node in lastOpenNodes:
 		if(!currentOpenNodes.has(node)):
-			node._close(tick)
+			if tick.blackboard.get('isOpen', tick.tree, node) == true:
+				node._close(tick)
 
 	#populate the blackboard
 	blackboard.set('openNodes', currentOpenNodes, self)
