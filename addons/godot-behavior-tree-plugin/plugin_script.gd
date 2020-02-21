@@ -115,13 +115,6 @@ func _enter_tree():
 		preload("res://addons/godot-behavior-tree-plugin/root_icon.png")
 	)
 
-	add_custom_type(
-		"BehaviorWait",
-		"Node",
-		preload("res://addons/godot-behavior-tree-plugin/wait.gd"),
-		preload("res://addons/godot-behavior-tree-plugin/action_icon.png")
-	)
-
 func _exit_tree():
 	remove_custom_type("BehaviorAction")
 	remove_custom_type("BehaviorBlackboard")
@@ -140,4 +133,3 @@ func _exit_tree():
 	remove_custom_type("BehaviorMemSequence")
 	remove_custom_type("BehaviorSucceeder")
 	remove_custom_type("BehaviorTree")
-	remove_custom_type("BehaviorWait")
