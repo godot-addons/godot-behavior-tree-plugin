@@ -1,14 +1,14 @@
+tool
 extends Node
 
-const BehvError = preload("res://addons/godot-behavior-tree-plugin/error.gd")
+
 const Tick = preload("res://addons/godot-behavior-tree-plugin/tick.gd")
 
 
 func _ready():
 	
-	if get_child_count() > 1:
-		var msg = str("ERROR BehaviorTree node at ", get_name(), " has more than 1 child. Should only have one. Returning.")
-		return BehvError.new(self, msg)
+	if not get_child_count() == 1:
+		push_error(str("BehaviorTree \"", name, "\" should have exactly one child."))
 
 
 func tick(actor, blackboard):
@@ -17,7 +17,7 @@ func tick(actor, blackboard):
 	tick.tree = self
 	tick.actor = actor
 	tick.blackboard = blackboard
-
+	
 	var result = FAILED
 	
 	for c in get_children():
@@ -36,3 +36,17 @@ func tick(actor, blackboard):
 	# Populate the blackboard
 	blackboard.set('openNodes', current_open_nodes, self)
 	return result
+
+
+func _notification(notification: int) -> void:
+	
+	if notification == NOTIFICATION_PARENTED or notification == NOTIFICATION_UNPARENTED:
+		update_configuration_warning()
+
+
+func _get_configuration_warning() -> String:
+	 
+	if not get_child_count() == 1:
+		return "A BehaviorTree should have exactly one child"
+	return ""
+

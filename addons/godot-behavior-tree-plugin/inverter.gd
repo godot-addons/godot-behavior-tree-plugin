@@ -1,18 +1,15 @@
-extends "res://addons/godot-behavior-tree-plugin/bt_base.gd"
+tool
+extends "res://addons/godot-behavior-tree-plugin/decorator.gd"
 
-const BehvError = preload("res://addons/godot-behavior-tree-plugin/error.gd")
 
-# Decorator Node - Inverter returns OK on FAILED, FAILED on OK, does not change running or error responses
+# Decorator Node - Inverter returns OK on FAILED, FAILED on OK, does not change running responses
 func tick(tick):
-	
-	if get_child_count() > 1:
-		return BehvError.new(self, "Inverter has more than one child")
 	
 	# 0..1 children
 	for c in get_children():
 		var result = c._execute(tick)
 		
-		if (typeof(result) == TYPE_OBJECT and result is BehvError) or result == ERR_BUSY:
+		if result == ERR_BUSY:
 			return result
 		
 		elif result == OK:
