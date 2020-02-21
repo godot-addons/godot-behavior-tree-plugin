@@ -25,13 +25,6 @@ func _enter_tree():
 	)
 
 	add_custom_type(
-		"BehaviorError",
-		"Node",
-		preload("res://addons/godot-behavior-tree-plugin/error.gd"),
-		preload("res://addons/godot-behavior-tree-plugin/error_icon.png")
-	)
-
-	add_custom_type(
 		"BehaviorFailer",
 		"Node",
 		preload("res://addons/godot-behavior-tree-plugin/failer.gd"),
@@ -133,7 +126,6 @@ func _exit_tree():
 	remove_custom_type("BehaviorAction")
 	remove_custom_type("BehaviorBlackboard")
 	remove_custom_type("BehaviorCondition")
-	remove_custom_type("BehaviorError")
 	remove_custom_type("BehaviorFailer")
 	remove_custom_type("BehaviorInverter")
 	remove_custom_type("BehaviorLimiter")
