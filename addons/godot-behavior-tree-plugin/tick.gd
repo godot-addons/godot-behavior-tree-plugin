@@ -3,30 +3,35 @@
 #Can be extended to do nodeCount and send debug info
 
 var tree
-var openNodes
-#var nodeCount
+var open_nodes
+#var node_count
 #var debug
 var actor
 var blackboard
 
+
 func _init():
-	tree = null
-	openNodes = []
-	actor = null
+	
+	open_nodes = []
 	blackboard = []
 
-func openNode(node):
+
+func open_node(node):
 	pass
 
-func enterNode(node):
-	openNodes.push_back(node)
 
-func tickNode(node):
+func enter_node(node):
+	open_nodes.push_back(node)
+
+
+func tick_node(node):
 	pass
 
-func closeNode(node):
-	if(openNodes.has(node)):
-		openNodes.remove(openNodes.find(node))
 
-func exitNode(node):
+func close_node(node):
+	if open_nodes.has(node):
+		open_nodes.remove(open_nodes.find(node))
+
+
+func exit_node(node):
 	pass
