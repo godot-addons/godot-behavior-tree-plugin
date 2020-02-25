@@ -1,37 +1,33 @@
 extends Node
 
-var _base_memory #stores global info
-var _tree_memory #store tree and node info
+var _base_memory: Dictionary #stores global info
+var _tree_memory: Dictionary #store tree and node info
 
 
-func _enter_tree():
+func _enter_tree() -> void:
 	_base_memory = {}
 	_tree_memory = {}
 
 
-func _get_tree_memory(behavior_tree):
+func set(key, value, behavior_tree = null, node_scope = null) -> void:
 	
-	if not _tree_memory.has(behavior_tree):
-		_tree_memory[behavior_tree]= {
-			'nodeMemory':{},
-			'openNodes':[]
-		}
-	
-	return _tree_memory[behavior_tree]
+	var memory := _get_memory(behavior_tree, node_scope)
+	memory[key] = value
 
 
-func _get_node_memory(tree_memory, node_scope):
+func get(key, behavior_tree = null, node_scope = null):
 	
-	var memory = tree_memory['nodeMemory']
+	var memory := _get_memory(behavior_tree, node_scope)
 	
-	if not memory.has(node_scope):
-		memory[node_scope] = {}
-	return memory[node_scope]
+	if memory.has(key):
+		return memory[key]
+	
+	return null
 
 
-func _get_memory(behavior_tree, node_scope):
+func _get_memory(behavior_tree, node_scope) -> Dictionary:
 	
-	var memory = _base_memory
+	var memory := _base_memory
 	
 	if behavior_tree:
 		memory = _get_tree_memory(behavior_tree)
@@ -42,17 +38,21 @@ func _get_memory(behavior_tree, node_scope):
 	return memory
 
 
-func set(key, value, behavior_tree = null, node_scope = null):
+func _get_tree_memory(behavior_tree) -> Dictionary:
 	
-	var memory = _get_memory(behavior_tree, node_scope)
-	memory[key] = value
+	if not _tree_memory.has(behavior_tree):
+		_tree_memory[behavior_tree] = {
+			'nodeMemory':{},
+			'openNodes':[]
+		}
+	
+	return _tree_memory[behavior_tree]
 
 
-func get(key, behavior_tree = null, node_scope = null):
+func _get_node_memory(tree_memory: Dictionary, node_scope) -> Dictionary:
 	
-	var memory = _get_memory(behavior_tree, node_scope)
+	var memory: Dictionary = tree_memory['nodeMemory']
 	
-	if memory.has(key):
-		return memory[key]
-	
-	return null
+	if not memory.has(node_scope):
+		memory[node_scope] = {}
+	return memory[node_scope]

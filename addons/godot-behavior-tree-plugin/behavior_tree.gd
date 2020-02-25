@@ -2,30 +2,30 @@ tool
 extends Node
 
 
-const Tick = preload("res://addons/godot-behavior-tree-plugin/tick.gd")
+const Tick := preload("res://addons/godot-behavior-tree-plugin/tick.gd")
 
 
-func _ready():
+func _ready() -> void:
 	
 	if not get_child_count() == 1:
 		push_error(str("BehaviorTree \"", name, "\" should have exactly one child."))
 
 
-func tick(actor, blackboard):
+func tick(actor, blackboard) -> int:
 	
-	var tick = Tick.new()
+	var tick := Tick.new()
 	tick.tree = self
 	tick.actor = actor
 	tick.blackboard = blackboard
 	
-	var result = FAILED
+	var result := FAILED
 	
-	for c in get_children():
-		result =  c._execute(tick)
+	for child in get_children():
+		result = child._execute(tick)
 	
 	# Close nodes from last tick, if needed
-	var last_open_nodes = tick.blackboard.get('openNodes', self)
-	var current_open_nodes = tick.open_nodes
+	var last_open_nodes: Array = tick.blackboard.get('openNodes', self)
+	var current_open_nodes := tick.open_nodes
 
 	# If node isn't currently open, but was open during last tick, close it
 	for node in last_open_nodes:

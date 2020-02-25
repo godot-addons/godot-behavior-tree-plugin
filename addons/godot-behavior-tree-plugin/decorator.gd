@@ -2,7 +2,7 @@ tool
 extends "res://addons/godot-behavior-tree-plugin/bt_base.gd"
 
 
-func _tick(tick):
+func _tick(tick: Tick) -> int:
 	
 	if not get_child_count() == 1:
 		push_error(str(name,  " is a decorator and should have exactly one child."))

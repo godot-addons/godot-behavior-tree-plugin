@@ -2,11 +2,11 @@ tool
 extends "res://addons/godot-behavior-tree-plugin/decorator.gd"
 
 
-export(int) var max_calls = 0
-var total_calls = 0
+export(int) var max_calls := 0
+var total_calls := 0
 
 # Decorator Node
-func tick(tick):
+func tick(tick: Tick) -> int:
 	
 	if total_calls >= max_calls:
 		return FAILED

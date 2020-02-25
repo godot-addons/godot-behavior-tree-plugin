@@ -4,14 +4,14 @@ extends "res://addons/godot-behavior-tree-plugin/bt_base.gd"
 #   succeeds ONLY if all children succeed (return OK)
 #   Unlike ordinary sequence, this one picks up where it left off if it wasn't closed last time
 
-func open(tick):
+func open(tick: Tick) -> void:
 	
 	tick.blackboard.set("runningChild", 0, tick.tree, self)
 
 
-func tick(tick):
+func tick(tick: Tick) -> int:
 	
-	var result = OK #if we have no children, assume success
+	var result := OK #if we have no children, assume success
 	
 	var childIdx = tick.blackboard.get("runningChild", tick.tree, self)
 	
@@ -19,7 +19,7 @@ func tick(tick):
 		var child = get_child(idx)
 		result = child._execute(tick)
 		
-		if result != OK:
+		if not result == OK:
 			if result == ERR_BUSY:
 				tick.blackboard.set("runningChild", idx, tick.tree, self)
 			break

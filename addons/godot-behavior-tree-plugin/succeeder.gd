@@ -3,11 +3,12 @@ extends "res://addons/godot-behavior-tree-plugin/decorator.gd"
 
 
 # Decorator Node - Always returns OK if not running or errored
-func tick(tick):
+
+func tick(tick: Tick) -> int:
 	
 	# 0..1 children
-	for c in get_children():
-		var result = c._execute(tick)
+	for child in get_children():
+		var result = child._execute(tick)
 		
 		if result == ERR_BUSY:
 			return result
