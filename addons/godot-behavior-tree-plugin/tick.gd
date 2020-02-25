@@ -2,31 +2,32 @@
 #It also holds the list of currently open nodes
 #Can be extended to do nodeCount and send debug info
 
+const Blackboard = preload("res://addons/godot-behavior-tree-plugin/blackboard.gd")
+
 var tree
-var openNodes
-#var nodeCount
+var open_nodes := []
+#var node_count
 #var debug
 var actor
-var blackboard
+var blackboard: Blackboard
 
-func _init():
-	tree = null
-	openNodes = []
-	actor = null
-	blackboard = []
 
-func openNode(node):
+func open_node(node) -> void:
 	pass
 
-func enterNode(node):
-	openNodes.push_back(node)
 
-func tickNode(node):
+func enter_node(node) -> void:
+	open_nodes.push_back(node)
+
+
+func tick_node(node) -> void:
 	pass
 
-func closeNode(node):
-	if(openNodes.has(node)):
-		openNodes.remove(openNodes.find(node))
 
-func exitNode(node):
+func close_node(node) -> void:
+	if open_nodes.has(node):
+		open_nodes.remove(open_nodes.find(node))
+
+
+func exit_node(node) -> void:
 	pass

@@ -1,15 +1,16 @@
 extends "res://addons/godot-behavior-tree-plugin/bt_base.gd"
 
-# Compsite Node - ticks children until one returns OK, ERR_BUSY or ERROR
-#   Fails ONLY if all children fail (return FAILED)
-func tick(tick):
-	var result = OK #if we have no children, assume success
+# Composite Node - ticks children until one returns OK or ERR_BUSY
+# 	Fails ONLY if all children fail (return FAILED)
 
-	for idx in range(0, get_child_count()):
-		var child = get_child(idx)
+func tick(tick: Tick) -> int:
+	
+	var result := OK #if we have no children, assume success
+	
+	for child in get_children():
 		result = child._execute(tick)
-
-		if result != FAILED:
+		
+		if not result == FAILED:
 			break
-
+	
 	return result
