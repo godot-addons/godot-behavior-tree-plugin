@@ -29,7 +29,6 @@ func _enter(tick: Tick) -> void:
 
 func _open(tick: Tick) -> void:
 	
-	print("opening node")
 	tick.open_node(self)
 	tick.blackboard.set('isOpen', true, tick.tree, self)
 	open(tick)
@@ -43,7 +42,6 @@ func _tick(tick: Tick) -> int:
 
 func _close(tick: Tick) -> void:
 	
-	print("closing node")
 	tick.close_node(self)
 	tick.blackboard.set('isOpen', false, tick.tree, self)
 	close(tick)
@@ -53,7 +51,8 @@ func _exit(tick: Tick) -> void:
 	tick.exit_node(self)
 	exit(tick)
 
-#the following functions are to be overridden in extending nodes
+
+# The following functions are to be overridden in extending nodes
 func enter(tick: Tick) -> void:
 	pass
 
