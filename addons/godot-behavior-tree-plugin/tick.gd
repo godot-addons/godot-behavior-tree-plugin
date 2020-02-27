@@ -7,27 +7,41 @@ const Blackboard = preload("res://addons/godot-behavior-tree-plugin/blackboard.g
 var tree
 var open_nodes := []
 #var node_count
-#var debug
+var debug: bool
 var actor
 var blackboard: Blackboard
 
 
 func open_node(node) -> void:
-	pass
+	
+	if debug:
+		print("Opening node '%s'" % node.name)
 
 
 func enter_node(node) -> void:
+	
 	open_nodes.push_back(node)
+	
+	if debug:
+		print("Entering node '%s'" % node.name)
 
 
 func tick_node(node) -> void:
-	pass
+	
+	if debug:
+		print("Ticking node '%s'" % node.name)
 
 
 func close_node(node) -> void:
+	
 	if open_nodes.has(node):
 		open_nodes.remove(open_nodes.find(node))
+		
+		if debug:
+			print("Closing node '%s'" % node.name)
 
 
 func exit_node(node) -> void:
-	pass
+	
+	if debug:
+		print("Exiting node '%s'" % node.name)

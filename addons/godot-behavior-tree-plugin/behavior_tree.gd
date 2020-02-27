@@ -11,12 +11,13 @@ func _ready() -> void:
 		push_error(str("BehaviorTree \"", name, "\" should have exactly one child."))
 
 
-func tick(actor, blackboard) -> int:
+func tick(actor, blackboard, debug = false) -> int:
 	
 	var tick := Tick.new()
 	tick.tree = self
 	tick.actor = actor
 	tick.blackboard = blackboard
+	tick.debug = debug
 	
 	var result := FAILED
 	
