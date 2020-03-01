@@ -10,7 +10,7 @@ func tick(tick: Tick) -> int:
 	for c in get_children():
 		
 		while true:
-			if _execute(tick) == OK:
+			if c._execute(tick) == OK:
 				return OK
 	
 	return OK
