@@ -42,35 +42,35 @@ func _enter_tree():
 		"BehaviorLimiter",
 		"Node",
 		preload("res://addons/godot-behavior-tree-plugin/limiter.gd"),
-		preload("res://addons/godot-behavior-tree-plugin/inverter_icon.png")
+		preload("res://addons/godot-behavior-tree-plugin/limiter_icon.png")
 	)
 
 	add_custom_type(
 		"BehaviorMaxLimiter",
 		"Node",
 		preload("res://addons/godot-behavior-tree-plugin/limiter.gd"),
-		preload("res://addons/godot-behavior-tree-plugin/inverter_icon.png")
+		preload("res://addons/godot-behavior-tree-plugin/limiter_icon.png")
 	)
 
 	add_custom_type(
 		"BehaviorRepeater",
 		"Node",
 		preload("res://addons/godot-behavior-tree-plugin/repeater.gd"),
-		preload("res://addons/godot-behavior-tree-plugin/inverter_icon.png")
+		preload("res://addons/godot-behavior-tree-plugin/repeat_icon.png")
 	)
 
 	add_custom_type(
 		"BehaviorRepeatUntilFail",
 		"Node",
 		preload("res://addons/godot-behavior-tree-plugin/repeat_until_fail.gd"),
-		preload("res://addons/godot-behavior-tree-plugin/inverter_icon.png")
+		preload("res://addons/godot-behavior-tree-plugin/repeat_fail_icon.png")
 	)
 
 	add_custom_type(
 		"BehaviorRepeatUntilSucceed",
 		"Node",
 		preload("res://addons/godot-behavior-tree-plugin/repeat_until_succeed.gd"),
-		preload("res://addons/godot-behavior-tree-plugin/inverter_icon.png")
+		preload("res://addons/godot-behavior-tree-plugin/repeat_success_icon.png")
 	)
 
 	add_custom_type(
