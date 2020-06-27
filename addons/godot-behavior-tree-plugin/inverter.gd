@@ -20,3 +20,4 @@ func tick(tick: Tick) -> int:
 		
 		else:
 			return result
+	return OK

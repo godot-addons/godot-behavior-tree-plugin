@@ -11,4 +11,4 @@ func tick(tick: Tick) -> int:
 		if c._execute(tick) == ERR_BUSY:
 			return ERR_BUSY
 		
-		return FAILED
+	return FAILED

@@ -13,4 +13,4 @@ func tick(tick: Tick) -> int:
 		if result == ERR_BUSY:
 			return result
 		
-		return OK
+	return OK
